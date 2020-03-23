@@ -1,4 +1,6 @@
+/*
 AUTHORS: <Please write your names here>
+*/
 
 #include "doctest.h"
 #include "PhoneticFinder.hpp"
@@ -9,7 +11,7 @@ using namespace std;
 
 
 TEST_CASE("Test replacement of v and w"){
-    string text = "xxx woow yyy"
+    string text = "xxx woow yyy";
     CHECK(find(text, "woow") == string("woow"));
     CHECK(find(text, "woov") == string("woow"));
     CHECK(find(text, "voow") == string("woow"));
