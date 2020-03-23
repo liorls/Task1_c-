@@ -1,5 +1,6 @@
 /*
-AUTHORS: <Please write your names here>
+AUTHORS: Levana Sciari,Mayanne zeevi, Lior Samuel-Levy 
+
 */
 
 #include "doctest.h"
@@ -8,7 +9,6 @@ using namespace phonetic;
 
 #include <string>
 using namespace std;
-
 
 TEST_CASE("Test replacement of v and w"){
     string text = "xxx woow yyy";
@@ -131,10 +131,14 @@ TEST_CASE("Test replacement of i and y") {
 
 TEST_CASE("Test replacement of y and i") {
     string text = "xxx yoyo zzz";
+    // CHECK(find(text, "yoyo") == string("yoyo"));
+    // CHECK(find(text, "yoyy") == string("yoyo"));
+    // CHECK(find(text, "yyyo") == string("yoyo"));
+    // CHECK(find(text, "yyyy") == string("yoyo"));
     CHECK(find(text, "yoyo") == string("yoyo"));
-    CHECK(find(text, "yoyi") == string("yoyo"));
-    CHECK(find(text, "yiyo") == string("yoyo"));
-    CHECK(find(text, "yiyi") == string("yoyo"));
+    CHECK(find(text, "yoio") == string("yoyo"));
+    CHECK(find(text, "ioyo") == string("yoyo"));
+    CHECK(find(text, "ioio") == string("yoyo"));
 }
 
 TEST_CASE("Test replacement of lower-case and upper-case") {
@@ -179,7 +183,7 @@ TEST_CASE("Test replacement of lower-case and upper-case") {
     CHECK(find(text, "CHOCOLATE") == string("chocolate"));
     CHECK(find(text, "ChoColate") == string("chocolate"));
     CHECK(find(text, "chOcOlate") == string("chocolate"));
-    CHECK(find(text, "chocolAtA") == string("chocolate"));
+    CHECK(find(text, "chocolAtE") == string("chocolate"));
     CHECK(find(text, "cHocolate") == string("chocolate"));
     CHECK(find(text, "ChOcOlAtE") == string("chocolate"));
     CHECK(find(text, "cHoCoLaTe") == string("chocolate"));
@@ -188,7 +192,7 @@ TEST_CASE("Test replacement of lower-case and upper-case") {
 TEST_CASE("Test replacement of lower-case and upper-case") {
     string text = "coffee xxx yyy"; //lower + f/b
     CHECK(find(text, "coffee") == string("coffee"));
-    CHECK(find(text, "COFFE") == string("coffee"));
+    CHECK(find(text, "COFFEE") == string("coffee"));
     CHECK(find(text, "Coffee") == string("coffee"));
     CHECK(find(text, "cOffee") == string("coffee"));
     CHECK(find(text, "coFFee") == string("coffee"));
@@ -198,3 +202,130 @@ TEST_CASE("Test replacement of lower-case and upper-case") {
 }
 
 
+TEST_CASE("Test replacement of lower-case and upper-case") {
+    string text = "TUND"; 
+    CHECK(find(text, "dont") == string("TUND"));
+    CHECK(find(text, "DONT") == string("TUND"));
+    CHECK(find(text, "Dont") == string("TUND"));
+}
+
+TEST_CASE("THROWS") {
+    string text = "sasson happ"; 
+CHECK_THROWS(find(text, "happ");
+CHECK_THROWS(find(text, "sasson");
+}
+
+TEST_CASE("Test replacement of v and w"){
+    string text = "i wear vest white";
+    
+    // CHECK(find(text,"wear") == string("wear"));
+    // CHECK(find(text,"veav") == string("wear"));
+    // CHECK(find(text,"vear") == string("wear"));
+    // CHECK(find(text,"weav") == string("wear"));
+    // CHECK(find(text,"vhite") == string("white"));
+    CHECK(find(text,"wear") == string("wear"));
+    CHECK(find(text,"vear") == string("wear"));
+    CHECK(find(text,"vear") == string("wear"));
+    CHECK(find(text,"wear") == string("wear"));
+    CHECK(find(text,"vhite") == string("white"));
+}
+//7
+TEST_CASE("Test replacement of b, f and p")
+{
+    string text = "badp fbpf pief bad";
+
+    CHECK(find(text, "badp") == string("badp"));
+    CHECK(find(text, "fadb") == string("badp"));
+    CHECK(find(text, "pad") == string("bad"));
+    CHECK(find(text, "bbbb") == string("fbpf"));
+    CHECK(find(text, "pief") == string("pief"));
+    CHECK(find(text, "fief") == string("pief"));
+    CHECK(find(text, "fad") == string("bad"));
+    
+}
+
+//8
+TEST_CASE("g and j")
+{
+    string text = "girl jumg on the glass ";
+	 CHECK(find(text, "girl") == string("girl"));
+     CHECK(find(text, "jirl") == string("girl"));
+
+	//
+	CHECK(find(text, "jumg") == string("jumg"));
+    CHECK(find(text, "gumg") == string("jumg"));
+    CHECK(find(text, "jumj") == string("jumg"));
+    CHECK(find(text, "gumj") == string("jumg"));
+
+
+	//
+    CHECK(find(text, "jlass") == string("glass"));
+    CHECK(find(text, "glass") == string("glass"));
+
+	
+
+}
+//6
+
+TEST_CASE("Test replacement of i and y ,also of  lower-case and upper-case") {
+
+    string text = "I  yIsk eliorbeautifuleyes";
+    
+    CHECK(find(text, "i") == string("I"));
+    CHECK(find(text, "Yisk") == string("yIsk"));
+    CHECK(find(text, "Iisk") == string("yIsk"));
+    CHECK(find(text, "elyorbeautYfuleIes") == string("eliorbeautifuleyes"));
+    CHECK(find(text, "Y")== string("I"));
+    CHECK(find(text, "YYSK") == string("yIsk"));
+    
+   
+}
+
+//4
+TEST_CASE("Test replacement of d and t ,also of  lower-case and upper-case") {
+    string text = "xxx dentyrit yyy";
+            CHECK(find(text, "TenTyriD") == string("dentyrit"));
+            CHECK(find(text, "DenDyriT") == string("dentyrit"));
+            CHECK(find(text, "tenTyrid") == string("dentyrit"));
+            CHECK(find(text, "DentyriT") == string("dentyrit"));
+           
+
+}
+//10
+TEST_CASE("Test for ALL kinds of replacement") {
+
+    string text = "xxx vafoudik yyy";
+
+            CHECK(find(text, "vafoudik") == string("vafoudik"));
+            CHECK(find(text, "VaPUOtyK") == string("vafoudik"));
+            CHECK(find(text, "VAFOUDIK") == string("vafoudik"));
+            CHECK(find(text, "vabouDYC") == string("vafoudik"));
+            CHECK(find(text, "wAFOUtiQ") == string("vafoudik"));
+            CHECK(find(text, "vaPUODyK") == string("vafoudik"));
+            CHECK(find(text, "xXX") == string("xxx"));
+            CHECK(find(text, "III") == string("yyy"));
+            CHECK(find(text, "iYi") == string("yyy"));
+            CHECK(find(text, "vafoudiK") == string("vafoudik"));
+}
+
+TEST_CASE("Test replacement of c, k and q") {
+    string text = "xx quick  yy";
+    CHECK(find(text, "quick") == string("quick"));
+    CHECK(find(text, "quicc") == string("quick"));
+    CHECK(find(text, "quikc") == string("quick"));
+    CHECK(find(text, "quikk") == string("quick"));
+    CHECK(find(text, "cuick") == string("quick"));
+    CHECK(find(text, "cuikk") == string("quick"));
+    CHECK(find(text, "cuikc") == string("quick"));
+    CHECK(find(text, "cuikq") == string("quick"));
+    CHECK(find(text, "cuiqk") == string("quick"));
+    CHECK(find(text, "cuiqc") == string("quick"));
+    CHECK(find(text, "cuiqq") == string("quick"));
+    CHECK(find(text, "kuick") == string("quick"));
+    CHECK(find(text, "kuikk") == string("quick"));
+    CHECK(find(text, "kuikc") == string("quick"));
+    CHECK(find(text, "kuikq") == string("quick"));
+    CHECK(find(text, "kuiqk") == string("quick"));
+    CHECK(find(text, "kuiqc") == string("quick"));
+    CHECK(find(text, "kuiqq") == string("quick"));
+}
