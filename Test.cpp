@@ -1,3 +1,5 @@
+AUTHORS: <Please write your names here>
+
 #include "doctest.h"
 #include "PhoneticFinder.hpp"
 using namespace phonetic;
